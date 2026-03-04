@@ -1,0 +1,79 @@
+"""
+input_parser_tool.py
+
+著者: Vish Rajagopalan
+会社: Cloudera
+日付: 2025-06-05
+
+説明:
+このモジュールは、空気質分析のための入力を解析および検証するツールを提供します。
+入力にはロケーション名、日付範囲、および分析用パラメータが含まれます。
+"""
+
+from typing import Type, List
+from pydantic import BaseModel, Field
+from crewai.tools import BaseTool
+
+
+class AirQualityAnalysisInput(BaseModel):
+    """AirQualityAnalysisToolの入力スキーマ。"""
+    locations: List[str] = Field(..., description="List of location names for air quality analysis.")
+    start_date: str = Field(..., description="Start date for the analysis in YYYY-MM-DD format.")
+    end_date: str = Field(..., description="End date for the analysis in YYYY-MM-DD format.")
+    aq_parameters: List[str] = Field(..., description="List of air quality parameters to analyze (e.g., pm10, pm25).")
+
+
+class InputParserTool(BaseTool):
+    name: str = "InputParserTool"
+    description: str = (
+        "LLM提供の入力を解析して空気質分析用のパラメータを検証および準備します。"
+        "これにはロケーション、日付範囲、および空気質パラメータの抽出が含まれます。"
+    )
+    args_schema: Type[BaseModel] = AirQualityAnalysisInput
+
+    def _run(self, locations: List[str], start_date: str, end_date: str, aq_parameters: List[str]) -> str:
+        """
+        入力データを処理し、空気質分析でさらに使用できる形式に準備します。
+
+        Args:
+            locations (List[str]): 分析対象のロケーション名のリスト。
+            start_date (str): YYYY-MM-DD形式の分析開始日。
+            end_date (str): YYYY-MM-DD形式の分析終了日。
+            parameters (List[str]): 分析する空気質パラメータのリスト。
+
+        Returns:
+            str: 解析および検証された入力データの要約文字列。
+        """
+        # 基本的な入力検証
+        if not locations:
+            return "Error: At least one location must be specified."
+        if not aq_parameters:
+            return "Error: At least one air quality parameter must be specified."
+        if start_date >= end_date:
+            return "Error: The start date must be before the end date."
+
+        # 入力の要約を作成する
+        input_summary = {
+            "locations": locations,
+            "start_date": start_date,
+            "end_date": end_date,
+            "parameters": aq_parameters,
+        }
+
+        return f"Validated Input: {input_summary}"
+
+
+# テスト例
+if __name__ == "__main__":
+    # LLM提供入力例
+    example_input = {
+        "locations": ["New York, USA", "Los Angeles, USA"],
+        "start_date": "2025-06-01",
+        "end_date": "2025-06-03",
+        "parameters": ["pm10", "pm25"],
+    }
+
+    tool = InputParserTool()
+    result = tool.run(**example_input)
+    print("\n--- Parsed and Validated Input ---")
+    print(result)
