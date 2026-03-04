@@ -1,114 +1,114 @@
-# AirAware Project
+# AirAware プロジェクト
 
-## Overview
-This project focuses on leveraging Generative AI to address environmental challenges through a multi-agent workflow. Specifically, the application analyzes air quality and integrates it with meteorological data for a comprehensive understanding of environmental trends. The workflow emphasizes the use of open datasets and APIs to create actionable insights as part of the broader **"Data for Good"** initiative.
+## 概要
+本プロジェクトは、マルチエージェントワークフローを通じて生成AIを活用し、環境課題の解決に取り組みます。具体的には、大気質を分析し、気象データと統合することで、環境トレンドの包括的な理解を実現します。ワークフローでは、オープンデータセットとAPIを活用し、**「Data for Good」**イニシアチブの一環として実践的な洞察を創出することに重点を置いています。
 
-### Highlights:
-1. **Open Data Sources**:
-   - **Air Quality Data**: Utilizes the OpenAQ API for accessing air quality metrics.
-   - **Geocoding**: Employs OpenStreetMap to extract bounding box coordinates for specified locations.
-   - **Weather Data**: Integrates with Open-Meteo API to fetch weather details.
+### 特徴
+1. **オープンデータソース**:
+   - **大気質データ**: 大気質指標にアクセスするために OpenAQ API を利用します。
+   - **ジオコーディング**: 指定された場所のバウンディングボックス座標を取得するために OpenStreetMap を利用します。
+   - **気象データ**: 気象詳細を取得するために Open-Meteo API と連携します。
 
-2. **Agentic Workflow**:
-   - Combines multiple data sources seamlessly.
-   - Facilitates a unified view of air quality and its correlation with weather conditions.
-   - Employs CrewAI’s multi-agent framework to ensure robust and modular processing.
+2. **エージェント型ワークフロー**:
+   - 複数のデータソースをシームレスに統合します。
+   - 大気質と気象条件の相関を一元化したビューを提供します。
+   - CrewAI のマルチエージェントフレームワークを活用し、堅牢でモジュール化された処理を実現します。
 
-3. **Use Case Focus**:
-   - Designed for environmental monitoring and analysis.
-   - Aligns with global sustainability goals by providing actionable insights on air quality trends.
+3. **ユースケース**:
+   - 環境モニタリングと分析を目的としています。
+   - 大気質トレンドに関する実践的な洞察を提供することで、グローバルな持続可能性目標に貢献します。
 
-## Functional Components
-### 1. Bounding Box Extraction
-The application determines bounding box coordinates for a given location using OpenStreetMap. This enables fetching weather data for all points within a region.
+## 機能コンポーネント
+### 1. バウンディングボックス抽出
+アプリケーションは OpenStreetMap を使用して、指定された場所のバウンディングボックス座標を算出します。これにより、地域内の全地点の気象データを取得できます。
 
-### 2. Air Quality Analysis
-Retrieves PM10 and PM2.5 levels, compares them with AQI standards, and identifies trends.
+### 2. 大気質分析
+PM10 および PM2.5 のレベルを取得し、AQI 基準と比較してトレンドを特定します。
 
-### 3. Weather Integration
-Integrates historical weather data with air quality trends to offer context on meteorological influences.
+### 3. 気象データ連携
+大気質トレンドと過去の気象データを統合し、気象の影響に関するコンテキストを提供します。
 
-### 4. Reporting
-Generates detailed report combining air quality and weather data for user-defined locations and timeframes.
+### 4. レポート生成
+ユーザーが指定した場所と期間について、大気質と気象データを組み合わせた詳細レポートを生成します。
 
-**To Generate a AirAware Report**
-1. From a Cloudera AI Session Launch Terminal
-2. Run the following command to generate a report for default Cities and dates i.e. Chennai, India and New Delhi, India <br>
+**AirAware レポートの生成方法**
+1. Cloudera AI Session からターミナルを起動します
+2. デフォルトの都市（インドのチェンナイ、ニューデリー）と日付でレポートを生成するには、以下のコマンドを実行します <br>
 `python3 main.py`
-3. To run for a specific set of cities for a specific set of cities, dates, parameters air quality parameters e.g. pm25, pm10 etc <br>
+3. 特定の都市、日付、大気質パラメータ（pm25、pm10 など）で実行する場合 <br>
 `python3 main.py --locations 'New York, USA', 'London, UK' --start_date '2025-01-01' --end_date '2025-01-03' --parameters 'pm25' `
-4. To know how to pass parameters<br>
+4. パラメータの渡し方を確認するには <br>
 `python3 main.py --help`
 
  
-## Example AirAware Report
---- Air Quality Analysis Report ---
-### Comprehensive Air Quality and Weather Report
+## AirAware レポートの例
+--- 大気質分析レポート ---
+### 大気質・気象総合レポート
 
-#### Introduction
-This report provides a detailed analysis of air quality data, specifically focusing on PM2.5 levels, alongside corresponding historical weather conditions for New Delhi and Chennai, India during the period of March 23 to March 26, 2025. The aim is to identify trends in air quality, compute average values, and explore potential correlations with meteorological conditions.
+#### はじめに
+本レポートは、2025年3月23日から3月26日にかけてのインド・ニューデリーおよびチェンナイにおける PM2.5 レベルに焦点を当てた大気質データの詳細分析と、対応する過去の気象条件を提供します。大気質のトレンドを特定し、平均値を算出し、気象条件との潜在的な相関を探ることが目的です。
 
 ---
 
-### 1. Air Quality Analysis
+### 1. 大気質分析
 
-#### 1.1 New Delhi, India
+#### 1.1 インド・ニューデリー
 
-**PM2.5 Data:**
-- **March 23:** 78.50 µg/m³
-- **March 24:** 92.60 µg/m³
-- **March 25:** 106.83 µg/m³
-- **March 26:** 99.07 µg/m³
+**PM2.5 データ:**
+- **3月23日:** 78.50 µg/m³
+- **3月24日:** 92.60 µg/m³
+- **3月25日:** 106.83 µg/m³
+- **3月26日:** 99.07 µg/m³
 
-**Average PM2.5 Level:**  
+**平均 PM2.5 レベル:**  
 \[
-\text{Average} = \frac{78.50 + 92.60 + 106.83 + 99.07}{4} = 94.00 \, \text{µg/m³}
+\text{平均} = \frac{78.50 + 92.60 + 106.83 + 99.07}{4} = 94.00 \, \text{µg/m³}
 \]
 
-**Weather Data:**
-- **March 23:** Mean Temp: 29.6°C, Wind Speed: 11.3 km/h, Humidity: 71%, Precipitation: 0.2 mm
-- **March 24:** Mean Temp: 29.0°C, Wind Speed: 9.0 km/h, Humidity: 75%, Precipitation: 0.6 mm
-- **March 25:** Mean Temp: 28.8°C, Wind Speed: 8.2 km/h, Humidity: 73%, Precipitation: 0.0 mm
-- **March 26:** Mean Temp: 29.0°C, Wind Speed: 9.8 km/h, Humidity: 71%, Precipitation: 0.0 mm
+**気象データ:**
+- **3月23日:** 平均気温: 29.6°C、風速: 11.3 km/h、湿度: 71%、降水量: 0.2 mm
+- **3月24日:** 平均気温: 29.0°C、風速: 9.0 km/h、湿度: 75%、降水量: 0.6 mm
+- **3月25日:** 平均気温: 28.8°C、風速: 8.2 km/h、湿度: 73%、降水量: 0.0 mm
+- **3月26日:** 平均気温: 29.0°C、風速: 9.8 km/h、湿度: 71%、降水量: 0.0 mm
 
-**Observations:**
-- The PM2.5 levels in New Delhi exhibited a significant increase over the analyzed period, peaking at 106.83 µg/m³ on March 25.
-- There is a noticeable correlation between decreasing wind speed and increasing PM2.5 concentrations, suggesting that stagnant air may contribute to pollutant accumulation.
-- The highest PM2.5 concentration aligns with the lowest wind speeds and moderate humidity levels.
+**考察:**
+- ニューデリーの PM2.5 レベルは分析期間中に大幅に上昇し、3月25日に 106.83 µg/m³ でピークに達しました。
+- 風速の低下と PM2.5 濃度の上昇の間に顕著な相関が見られ、停滞した空気が汚染物質の蓄積に寄与している可能性が示唆されます。
+- 最も高い PM2.5 濃度は、最も低い風速と中程度の湿度レベルと一致しています。
 
 ---
 
-#### 1.2 Chennai, India
+#### 1.2 インド・チェンナイ
 
-**PM2.5 Data:**
-- **March 23:** 18.84 µg/m³
-- **March 24:** 25.24 µg/m³
-- **March 25:** 31.04 µg/m³
-- **March 26:** 30.38 µg/m³
+**PM2.5 データ:**
+- **3月23日:** 18.84 µg/m³
+- **3月24日:** 25.24 µg/m³
+- **3月25日:** 31.04 µg/m³
+- **3月26日:** 30.38 µg/m³
 
-**Average PM2.5 Level:**  
+**平均 PM2.5 レベル:**  
 \[
-\text{Average} = \frac{18.84 + 25.24 + 31.04 + 30.38}{4} = 26.15 \, \text{µg/m³}
+\text{平均} = \frac{18.84 + 25.24 + 31.04 + 30.38}{4} = 26.15 \, \text{µg/m³}
 \]
 
-**Weather Data:**
-- **March 23:** Mean Temp: 29.4°C, Wind Speed: 7.3 km/h, Humidity: 78%, Precipitation: 0.1 mm
-- **March 24:** Mean Temp: 29.9°C, Wind Speed: 6.8 km/h, Humidity: 76%, Precipitation: 0.0 mm
-- **March 25:** Mean Temp: 30.1°C, Wind Speed: 6.5 km/h, Humidity: 75%, Precipitation: 0.0 mm
-- **March 26:** Mean Temp: 30.3°C, Wind Speed: 6.9 km/h, Humidity: 74%, Precipitation: 0.0 mm
+**気象データ:**
+- **3月23日:** 平均気温: 29.4°C、風速: 7.3 km/h、湿度: 78%、降水量: 0.1 mm
+- **3月24日:** 平均気温: 29.9°C、風速: 6.8 km/h、湿度: 76%、降水量: 0.0 mm
+- **3月25日:** 平均気温: 30.1°C、風速: 6.5 km/h、湿度: 75%、降水量: 0.0 mm
+- **3月26日:** 平均気温: 30.3°C、風速: 6.9 km/h、湿度: 74%、降水量: 0.0 mm
 
-**Observations:**
-- PM2.5 levels in Chennai showed a gradual increase from March 23 to March 25, with a slight decrease on March 26.
-- Despite lower PM2.5 levels compared to New Delhi, the trend indicates increasing pollution levels which may be influenced by lower wind speeds.
-- The humidity remained relatively high but did not significantly alter the PM2.5 concentrations, suggesting that other local sources of pollution could be at play.
+**考察:**
+- チェンナイの PM2.5 レベルは 3月23日から 3月25日にかけて徐々に上昇し、3月26日にはわずかに低下しました。
+- ニューデリーと比較して PM2.5 レベルは低いものの、トレンドは汚染レベルの上昇を示しており、風速の低下の影響を受けている可能性があります。
+- 湿度は比較的高い状態を維持していましたが、PM2.5 濃度に大きな変化はなく、他の局所的な汚染源が関与している可能性が示唆されます。
 
 ---
 
-### Conclusion
+### 結論
 
-The analysis highlights distinct differences in air quality trends between New Delhi and Chennai during the specified dates:
+本分析は、指定期間におけるニューデリーとチェンナイの大気質トレンドに明確な違いがあることを示しています:
 
-- **New Delhi** experienced significantly higher PM2.5 levels with an alarming peak due to stagnant meteorological conditions (lower wind speeds).
-- **Chennai**, while having lower PM2.5 concentrations overall, also showed an upward trend in pollution levels which warrants further monitoring.
+- **ニューデリー** は、停滞した気象条件（低い風速）により、PM2.5 レベルが著しく高く、3月25日に警鐘的なピークを記録しました。
+- **チェンナイ** は、全体的に PM2.5 濃度は低いものの、汚染レベルの上昇トレンドを示しており、継続的なモニタリングが必要です。
 
-Overall, this report underscores the critical need for continued air quality monitoring in conjunction with meteorological data to inform public health strategies and policy-making.
+総じて、本レポートは公衆衛生戦略と政策立案に情報を提供するため、気象データと組み合わせた大気質モニタリングの継続的な重要性を強調しています。
